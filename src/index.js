@@ -1,25 +1,15 @@
+import dotenv from 'dotenv'
+import connectDB from './db/index.js'
+import {app} from './app.js'
+dotenv.config()
 
-const express = require('express')
-const app = express()
-const port = 3000
+const port = process.env.PORT || 8000
 
-app.get('/api/cars', (req, res) => {
-    let cars = [
-        {
-          "color": "purple",
-          "type": "minivan",
-          "registration": new Date('2017-01-03'),
-          "capacity": 7
-        },
-        {
-          "color": "red",
-          "type": "station wagon",
-          "registration": new Date('2018-03-03'),
-          "capacity": 5
-        },]
-  res.send({cars})
-})
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+connectDB().then(() => {
+  app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+  })
+}).catch((error) => {
+  console.log("MONGODB FAILURE ", error);
 })
