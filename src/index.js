@@ -11,5 +11,5 @@ connectDB().then(() => {
     console.log(`Example app listening on port ${port}`) 
   })
 }).catch((error) => {
-  console.log("MONGODB FAILURE ", error);
+  console.log("MONGODB FAILURE ", error); 
 })
